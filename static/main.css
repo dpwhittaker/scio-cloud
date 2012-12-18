@@ -1,0 +1,103 @@
+html, body {
+	margin:0; padding:0;
+	height:100%;
+}
+ 
+body {
+	font-family:Georgia, Times, serifs;
+	background: #fcfff4; /* Old browsers */
+	background: -moz-linear-gradient(top,  #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfff4), color-stop(40%,#dfe5d7), color-stop(100%,#b3bead)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #fcfff4 0%,#dfe5d7 40%,#b3bead 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #fcfff4 0%,#dfe5d7 40%,#b3bead 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #fcfff4 0%,#dfe5d7 40%,#b3bead 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #fcfff4 0%,#dfe5d7 40%,#b3bead 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 ); /* IE6-9 */
+}
+ 
+header {
+	width:800px;
+	margin:0 auto;
+}
+ 
+#content {
+	width: 100%;
+	max-width:800px;
+	min-height:100%;
+	margin:0 auto;
+	background:#fff;
+}
+ 
+footer {
+	position:absolute;
+	bottom:0; right:0;
+}
+
+h1 {
+	font-size: 66px;
+	color: #3E779D;
+}
+
+.bigbutton, .medbutton, .smlbutton {
+	border-top: 1px solid #96d1f8;
+	background: #65a9d7;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+	background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+	background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+	background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+	background: -o-linear-gradient(top, #3e779d, #65a9d7);
+	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	color: white;
+	font-family: Georgia, Serif;
+	text-decoration: none;
+	vertical-align: middle;
+	display: inline-block;
+	text-align: center;
+}
+.bigbutton {
+	padding: 40px 80px;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	font-size: 40px;
+}
+.medbutton {
+	padding: 20px 40px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	font-size: 20px;
+}
+.smlbutton {
+	padding: 5px 20px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 12px;
+}
+.bigbutton:hover, .medbutton:hover, .smlbutton:hover {
+	border-top-color: #28597a;
+	background: #28597a;
+	color: #ccc;
+}
+.bigbutton:active, .medbutton:active, .smlbutton:active {
+	border-top-color: #1b435e;
+	background: #1b435e;
+}
+.center {
+	text-align: center;
+	margin: 0 auto;
+}
+
+#loginForm .smlbutton {
+	width: 55px;
+}
+#loginForm #username, #password {
+	width: 136px;
+}
+#loginForm label {
+	font-size: 12px;
+}

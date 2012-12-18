@@ -1,0 +1,78 @@
+<% layout('boilerplate') -%>
+<div style="float:left"><h1 style="margin:-6px 0">SCIO Cloud</h1></div>
+<div style="float:right">
+<script type="text/javascript">
+function submitForm() {
+	form = document.getElementById("loginForm");
+	username = document.getElementById("username");
+	password = document.getElementById("password");
+	if (username.value == "")
+		username.style.borderColor = "red";
+	if (password.value == "")
+		password.style.borderColor = "red";
+	if (username.value != "" && password.value != "")
+		form.submit();
+}
+</script>
+	<form id="loginForm" action="login" method="POST">
+		<div>
+			<input id="username" name="username" type="text" placeholder="Username" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
+			<input id="password" name="password" type="password" placeholder="Password" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
+		</div>
+		<div>
+			<input id="remember" name="remember" type="checkbox"/><label for="remember">Remember me</label>
+			<a href="javascript:submitForm()" class="smlbutton">Log In</a>
+			<a href="javascript:signup()" class="smlbutton">Sign Up</a>
+		</div>
+	</form>
+</div>
+<div style="clear:both"></div>
+<br/>
+The SCIO Cloud is your ticket to all the capabilities of the SCIO device on the web.
+Log in and try it out for free!
+<ul style="margin-top:0">
+	<li>Save your data at school, and finish your lab work at home</li>
+	<li>Work on classwork with real time feedback</li>
+	<li>Enjoy interactive lectures with many more options than standard "clicker" systems</li>
+	<li>Take tests that can be graded as quickly as a Scantron, but with the partial credit of a standard paper test</li>
+	<li>Use your phone, tablet, laptop, computer, game console, or TV.  If it has a web browser, it can access the SCIO Cloud</li>
+</ul>
+<hr/>
+<table style="text-align:center;width:100%;" cellpadding="0">
+	<tr>
+		<td colspan="2">Features and Benefits</td>
+	</tr>
+	<tr>
+		<td>Teachers</td><td>Students</td>
+	</tr>
+	<tr>
+		<td style="text-align:left">
+			<ul style="margin-top:0">
+				<li>Sync the SCIO with the Cloud during or after class, whenever a connection is available</li>
+				<li>Share labs and questions with teachers around the country</li>
+				<li>Search by topic, keyword, grade range, difficulty, etc.</li>
+				<li>Monitor student progress as the work</li>
+				<li>Grade responses as they are submitted</li>
+				<li>Configure everything - number of tries, grading scheme, randomization, and more</li>
+				<li>Edit questions to suit your class</li>
+				<li>Save and share entire assignments, or individual questions</li>
+		</td>
+		<td style="text-align:left">
+			<ul style="margin-top:0">
+				<li>Do your homework on your mobile device!</li>
+				<li>Complete labs and classwork at home</li>
+				<li>Need more practice?  Search for more questions with answers and explanations</li>
+				<li>Not just boring multiple choice questions, but:
+					<ul>
+						<li>numeric answers</li>
+						<li>formulas</li>
+						<li>words (watch your spelling!)</li>
+						<li>drawings (touch or mouse)</li>
+						<li>graphs (spreadsheet charts)</li>
+					</ul>
+				</li>
+		</td>
+	</tr>
+</table>
+</div>
+
