@@ -39,11 +39,14 @@ function setupDb(callback) {
   mongo.connect(app.get('mongoUrl'), function(err, db) {
     if (err) { callback(err); return; }
 		app.set('db', db);
-		db.createCollection('Users', function(err, Users) {
-			if (err) { callback(err); return; }
-			app.set('Users', Users);
-			callback();
-		});
+		async.forEach(['Users'],
+			function (collectionName, next) {
+				db.createCollection(collectionName, function(err, collection) {
+					if (err) { next(err); return; }
+					app.set(collectionName, collection);
+					next();
+				});
+			}, callback);
   });
 }
 
@@ -69,6 +72,7 @@ function setupApp(callback) {
 	app.post('/login', auth, function(req,res,next) {res.redirect('/' + req.session.userType);});
 	app.get('/login', function(req,res,next){ res.render('login'); });
 
+	app.get('/register', function(req,res,next){ res.render('register'); });
 	callback();
 }
 

@@ -1,0 +1,43 @@
+<% layout('boilerplate') -%>
+<div><h1 style="margin:-6px 0">SCIO Cloud</h1></div>
+<div style="margin-top:100px;text-align:center">
+<script type="text/javascript">
+function submitForm() {
+	form = document.getElementById("registerForm");
+	username = document.getElementById("username");
+	password = document.getElementById("password");
+	password2 = document.getElementById("password2");
+	good = true;
+	if (username.value == "") {
+		username.style.borderColor = "red";
+		good = false;
+	}
+	if (password.value == "") {
+		password.style.borderColor = "red";
+		good = false;
+	}
+	if (password.value != password2.value) {
+		password2.style.borderColor = "red";
+		good = false;
+	}
+	if (username.value != "" && password.value != "")
+		form.submit();
+}
+function checkKey(event) {
+	if(event && event.keyCode == 13) submitForm();
+}
+function userTypeSelected() {
+	alert(this.value);
+}
+</script>
+	<form id="registerForm" action="login" method="POST">
+		<div><input id="username" name="username" type="text" placeholder="Username" onkeypress="checkKey(event)"/></div>
+		<div><input id="password" name="password" type="password" placeholder="Password" onkeypress="checkKey(event)"/></div>
+		<div><input id="password2" name="password2" type="password" placeholder="Re-enter Password" onkeypress="checkKey(event)"/></div>
+		<div>
+			I am a
+			<input type="radio" id="teacher" name="userType" value="teacher" onclick="userTypeSelected"/><label for="teacher">Teacher</label>
+			<input type="radio" id="student" name="userType" value="student" onclick="userTypeSelected"/><label for="student">Student</label>
+	</form>
+</div>
+
