@@ -26,8 +26,10 @@ function submitForm() {
 function checkKey(event) {
 	if(event && event.keyCode == 13) submitForm();
 }
-function userTypeSelected() {
-	alert(this.value);
+function userTypeSelected(userType) {
+	document.getElementById("teacherSection").style.display = "none";
+	document.getElementById("studentSection").style.display = "none";
+	document.getElementById(userType.value + "Section").style.display = "block";
 }
 </script>
 	<form id="registerForm" action="login" method="POST">
@@ -36,8 +38,15 @@ function userTypeSelected() {
 		<div><input id="password2" name="password2" type="password" placeholder="Re-enter Password" onkeypress="checkKey(event)"/></div>
 		<div>
 			I am a
-			<input type="radio" id="teacher" name="userType" value="teacher" onclick="userTypeSelected"/><label for="teacher">Teacher</label>
-			<input type="radio" id="student" name="userType" value="student" onclick="userTypeSelected"/><label for="student">Student</label>
+			<input type="radio" id="teacher" name="userType" value="teacher" onclick="userTypeSelected(this)"/><label for="teacher">Teacher</label>
+			<input type="radio" id="student" name="userType" value="student" onclick="userTypeSelected(this)"/><label for="student">Student</label>
+		</div>
+		<div id="teacherSection" style="display:none">
+			Teacher
+		</div>
+		<div id="studentSection" style="display:none">
+			Student
+		</div>
 	</form>
 </div>
 

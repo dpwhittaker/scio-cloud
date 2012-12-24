@@ -101,3 +101,6 @@ h1 {
 #loginForm label {
 	font-size: 12px;
 }
+#registerForm #username, #password, #password2 {
+	width: 200px;
+}
