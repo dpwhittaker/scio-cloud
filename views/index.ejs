@@ -1,33 +1,7 @@
+<% script('js/sjcl.js') %>
+<% block('header', 'SCIO Cloud') %>
+<% block('headerRight', partial('loginBox.ejs')) %>
 <% layout('boilerplate') -%>
-<div style="float:left"><h1 style="margin:-6px 0">SCIO Cloud</h1></div>
-<div style="float:right">
-<script type="text/javascript">
-function submitForm() {
-	form = document.getElementById("loginForm");
-	username = document.getElementById("username");
-	password = document.getElementById("password");
-	if (username.value == "")
-		username.style.borderColor = "red";
-	if (password.value == "")
-		password.style.borderColor = "red";
-	if (username.value != "" && password.value != "")
-		form.submit();
-}
-</script>
-	<form id="loginForm" action="login" method="POST">
-		<div>
-			<input id="username" name="username" type="text" placeholder="Username" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
-			<input id="password" name="password" type="password" placeholder="Password" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
-		</div>
-		<div>
-			<input id="remember" name="remember" type="checkbox"/><label for="remember">Remember me</label>
-			<a href="javascript:submitForm()" class="smlbutton">Log In</a>
-			<a href="register" class="smlbutton">Sign Up</a>
-		</div>
-	</form>
-</div>
-<div style="clear:both"></div>
-<br/>
 The SCIO Cloud is your ticket to all the capabilities of the SCIO device on the web.
 Log in and try it out for free!
 <ul style="margin-top:0">

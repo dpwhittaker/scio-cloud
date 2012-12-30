@@ -1,0 +1,29 @@
+<script type="text/javascript">
+function submitForm() {
+	form = $("#loginForm");
+	username = $("#username");
+	password = $("#password");
+	if (username.value == "")
+		username.style.borderColor = "red";
+	if (password.value == "")
+		password.style.borderColor = "red";
+	if (username.value != "" && password.value != "") {
+		password = $('#password').val();
+		password = sjcl.codec.base64.fromBits(sjcl.hash.sha256.hash(password), true);
+		$('#password').val(password);
+		form.submit();
+	}
+}
+</script>
+<form id="loginForm" action="login" method="POST">
+	<div>
+		<input id="username" name="username" type="text" placeholder="Username" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
+		<input id="password" name="password" type="password" placeholder="Password" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
+	</div>
+	<div>
+		<input id="remember" name="remember" type="checkbox"/><label for="remember">Remember me</label>
+		<a href="javascript:submitForm()" class="smlbutton">Log In</a>
+		<a href="register" class="smlbutton">Sign Up</a>
+	</div>
+</form>
+

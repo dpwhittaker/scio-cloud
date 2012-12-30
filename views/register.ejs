@@ -1,52 +1,104 @@
-<% layout('boilerplate') -%>
-<div><h1 style="margin:-6px 0">SCIO Cloud</h1></div>
-<div style="margin-top:100px;text-align:center">
+<% script('js/sjcl.js') %>
+<% block('header', 'Sign Up') %>
+<% layout('boilerplate') %>
+<div style="text-align:center">
 <script type="text/javascript">
 function submitForm() {
-	form = document.getElementById("registerForm");
-	username = document.getElementById("username");
-	password = document.getElementById("password");
-	password2 = document.getElementById("password2");
-	good = true;
-	if (username.value == "") {
-		username.style.borderColor = "red";
-		good = false;
+	var basicInputs = $('#basicInfo input,#commonInfo input');
+	basicInputs.css('border-color', '');
+	var empty = basicInputs.filter(function(i) { return this.value == ""; });
+	var submit = true;
+	if (empty.length > 0) {
+		empty.css('border-color', 'red');
+		submit = false;
 	}
-	if (password.value == "") {
-		password.style.borderColor = "red";
-		good = false;
+	if ($('#password').val() != $('#password2').val()) {
+		$('#password2').css('border-color', 'red');
+		submit = false;
 	}
-	if (password.value != password2.value) {
-		password2.style.borderColor = "red";
-		good = false;
+	if ($('#teacherStudent input:checked').val() == "") {
+		$('#teacherStudent').css('border-color', 'red');
+		submit = false;
 	}
-	if (username.value != "" && password.value != "")
-		form.submit();
+	if (submit) {
+		password = $('#password').val();
+		password = sjcl.codec.base64.fromBits(sjcl.hash.sha256.hash(password), true);
+		$('#password,#password2').val(password);
+	}
+	return submit;
 }
-function checkKey(event) {
-	if(event && event.keyCode == 13) submitForm();
+function userTypeSelected() {
+	$('#teacherInfo,#studentInfo').hide();
+	$('#' + $(this).val() + 'Info').show();
+	if ($(this).val() == 'teacher')
+		$('#state,#system').removeAttr('disabled');
+	else
+		$('#state,#system').attr('disabled','');
 }
-function userTypeSelected(userType) {
-	document.getElementById("teacherSection").style.display = "none";
-	document.getElementById("studentSection").style.display = "none";
-	document.getElementById(userType.value + "Section").style.display = "block";
+function schoolComplete(request, response) {
+	$.getJSON('schools', {term: request.term}, function(data) {
+		if (!data) return response([{value: 'Thompson High School', name: 'Thompson High School', state: 'Alabama', system: 'Shelby County Schools', _id: '1'}]);
+		$.each(data, function(i, val) {
+			val.value = val.name + ', ' + val.state + ', ' + val.system;
+		});
+		response(data);
+	});
 }
+function schoolSelect(event, ui) {
+	$('#school').data(ui.item);
+	$('#state').val(ui.item.state);
+	$('#system').val(ui.item.system);
+	$('#schoolId').val(ui.item._id);
+}
+function schoolChange(event, ui) {
+	if (ui.item == null && $('#teacherStudent input:checked').val() == 'student') {
+		$('#school').data(null);
+		$('#school').val("");
+		$('#state').val("");
+		$('#system').val("");
+		$('#schoolId').val("");
+	}
+}
+$(function() {
+	$('#registerForm').on('submit', submitForm);
+	$('#teacherStudent').buttonset();
+	$('#teacherStudent input').on('click', userTypeSelected);
+	$('#school').autocomplete({source: schoolComplete, select: schoolSelect, change: schoolChange})
+		.data('autocomplete')._renderItem = function( ul, item ) {
+			return $('<li>').data('item.autocomplete', item)
+				.append('<a>' + item.name + '<br><span style="font-size:10px">' + item.system + ', ' + item.state + '</a>')
+				.appendTo( ul );
+		};
+	$('#submit').button();
+	$('#teacherStudent input:checked').click();
+});
 </script>
-	<form id="registerForm" action="login" method="POST">
-		<div><input id="username" name="username" type="text" placeholder="Username" onkeypress="checkKey(event)"/></div>
-		<div><input id="password" name="password" type="password" placeholder="Password" onkeypress="checkKey(event)"/></div>
-		<div><input id="password2" name="password2" type="password" placeholder="Re-enter Password" onkeypress="checkKey(event)"/></div>
-		<div>
-			I am a
-			<input type="radio" id="teacher" name="userType" value="teacher" onclick="userTypeSelected(this)"/><label for="teacher">Teacher</label>
-			<input type="radio" id="student" name="userType" value="student" onclick="userTypeSelected(this)"/><label for="student">Student</label>
+	<form id="registerForm" action="register" method="POST">
+		<div id="basicInfo">
+			<div><input id="firstname" name="firstname" type="text" placeholder="First Name" value=""/></div>
+			<div><input id="lastname" name="lastname" type="text" placeholder="Last Name" value=""/></div>
+			<div><input id="username" name="username" type="text" placeholder="Username" value=""/></div>
+			<div><input id="password" name="password" type="password" placeholder="Password" value=""/></div>
+			<div><input id="password2" name="password2" type="password" placeholder="Re-enter Password" value=""/></div>
 		</div>
-		<div id="teacherSection" style="display:none">
+		<div id="teacherStudent">
+			I am a
+			<input type="radio" id="teacher" name="userType" value="teacher"/><label for="teacher">Teacher</label>
+			<input type="radio" id="student" name="userType" value="student" checked="true"/><label for="student">Student</label>
+		</div>
+		<div id="commonInfo">
+			<div><input id="school" name="school" type="text" placeholder="School"/></div>
+			<div><input id="system" name="system" type="text" placeholder="System" disabled/></div>
+			<div><input id="state" name="state" type="text" placeholder="State" disabled/></div>
+		</div>
+		<input id="schoolId" name="schoolId" type="hidden"/>
+		<div id="teacherInfo" style="display:none">
 			Teacher
 		</div>
-		<div id="studentSection" style="display:none">
+		<div id="studentInfo" style="display:block">
 			Student
 		</div>
+		<input type="submit" id="submit" name="submit" value="Submit"/>
 	</form>
 </div>
 

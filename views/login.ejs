@@ -1,29 +1,8 @@
+<% script('js/sjcl.js') %>
+<% block('header', 'Log In') %>
 <% layout('boilerplate') -%>
-<div><h1 style="margin:-6px 0">SCIO Cloud</h1></div>
-<div style="margin-top:100px;text-align:center">
-<script type="text/javascript">
-function submitForm() {
-	form = document.getElementById("loginForm");
-	username = document.getElementById("username");
-	password = document.getElementById("password");
-	if (username.value == "")
-		username.style.borderColor = "red";
-	if (password.value == "")
-		password.style.borderColor = "red";
-	if (username.value != "" && password.value != "")
-		form.submit();
-}
-</script>
-	<form id="loginForm" action="login" method="POST">
-		<div>
-			<input id="username" name="username" type="text" placeholder="Username" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
-			<input id="password" name="password" type="password" placeholder="Password" onkeypress="if(event && event.keyCode == 13) submitForm();"/>
-		</div>
-		<div>
-			<input id="remember" name="remember" type="checkbox"/><label for="remember">Remember me</label>
-			<a href="javascript:submitForm()" class="smlbutton">Log In</a>
-			<a href="register" class="smlbutton">Sign Up</a>
-		</div>
-	</form>
+<div style="margin:100px auto;text-align:center">
+<%= error %>
+<%- partial('loginBox.ejs') %>
 </div>
 
