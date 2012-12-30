@@ -7,9 +7,8 @@ var express = require('express')
   , app = express()
   , passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
-  , register = require('./node/register.js').init(app)
-  , DB = require('./node/DB.js').init(app)
-  , teacher = require('./node/teacher.js').init(app);
+  , register = require('./node/register.js')
+  , teacher = require('./node/teacher.js');
 
 app.configure('development', function() {
 	//af tunnel scio-mongodb
@@ -41,7 +40,7 @@ function setupDb(callback) {
   mongo.connect(app.get('mongoUrl'), function(err, db) {
     if (err) { console.log(err); callback(err); return; }
 		app.set('db', db);
-		async.forEach(['Users','Schools'],
+		async.forEach(['Users','Schools','Questions'],
 			function (collectionName, next) {
 				db.createCollection(collectionName, function(err, collection) {
 					if (err) { console.log(err); next(err); return; }
@@ -91,12 +90,8 @@ function setupApp(callback) {
 	app.get('/login', function(req,res,next){ res.render('login', {error: req.flash('error')} ); });
 	app.get('/logout', function(req,res,next){ req.logout(); res.redirect('/'); });
 	
-	app.get('/register', register.get);
-	app.post('/register', register.post);
-	app.get('/schools', DB.schools);
-	
-	app.all('/teacher*', teacher.authorize);
-	app.get('/teacher', teacher.get);
+	register.init(app);
+	teacher.init(app);
 	
 	callback();
 }

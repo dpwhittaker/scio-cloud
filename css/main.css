@@ -93,13 +93,14 @@ h1 {
 .bigbuttongrid {
 /*	text-align: justify;*/
 }
-.bigbuttongrid .bigbutton {
-	width: 280px;
+.bigbuttongrid .button {
+	width: 360px;
 	margin: 10px;
 	display: inline-block;
 	float: left;
+	font-size: 40px;
 }
-.bigbuttongrid .bigbutton:nth-child(even) {
+.bigbuttongrid .button:nth-child(even) {
 	float:right;
 }
 .center {
@@ -107,34 +108,37 @@ h1 {
 	margin: 0 auto;
 }
 
-#loginForm .smlbutton {
-	width: 55px;
+#loginForm .button {
+	font-size: 12px;
 }
 #loginForm #username, #password {
-	width: 136px;
+	width: 116px;
+	font-size: 12px;
 }
 #loginForm label {
 	font-size: 12px;
 }
-#registerForm input {
+input[type="text"], input[type="password"] {
 	width: 400px;
+	line-height: 1.5em;
 	font-size: 20px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
-.teacherWho {
+.who {
 	float: left;
 	margin-right: 5px;
 }
 .logoutContainer {
 	float: right;
+	font-size: 11px;
 }
-.teacherName {
+.whoName {
 	font-weight: bold;
 	font-size: 14px;
 }
-.teacherSchool {
+.whoSchool {
 	font-size: 10px;
 	font-style: italic;
 }

@@ -1,16 +1,47 @@
+var ObjectID = require('mongodb').ObjectID;
 var app;
 
-exports.init = function (appVar) { app = appVar; return exports; }
+exports.init = function (appVar) {
+	app = appVar;
+	app.all('/teacher*', authorize);
+	app.get('/teacher', get);
+	app.get('/teacher/questions', questions);
+	app.get('/teacher/questions/new', newQuestion);
+	app.get('/teacher/questions/:id', editQuestion);
+}
 
-exports.authorize = function (req, res, next) {
-	console.log('Authorizing:');
-	console.log(req.user);
+function authorize (req, res, next) {
 	if (!req.user) return res.redirect('/login');
 	if (req.user.userType != 'teacher') return res.redirect('/' + req.user.userType);
+	res.locals.user = req.user;
 	next();
 };
 
-exports.get = function (req,res,next) {
-	res.render('teacher', {user: req.user});
+function get (req, res, next) {
+	res.render('teacher');
 };
 
+function questions (req, res, next) {
+	res.render('questions');
+}
+
+function newQuestion (req, res, next) {
+	app.get('Questions').insert({
+		title: 'Untitled',
+		body: '',
+		author: req.user._id,
+		variables: {},
+		answers: {}
+	}, {w:1}, function (err, question) {
+		if (err) return next(err);
+		res.redirect('/teacher/questions/' + question[0]._id);
+	});
+}
+
+function editQuestion (req, res, next) {
+	app.get('Questions').findOne({_id: new ObjectID(req.params.id)}, function (err, question) {
+		if (err) return next(err);
+		if (!question) return res.send('Question not found');
+		res.render('editQuestion', question);
+	});
+}

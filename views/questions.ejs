@@ -1,0 +1,14 @@
+<% block('header', 'Questions') %>
+<% layout('boilerplate') -%>
+
+<script type="text/javascript">
+$(function() {
+});
+</script>
+<a class="button" href="/teacher/questions/new">New Question</a>
+<span class="buttonSet">
+	<input type="radio" id="myQuestions"	name="questionFilter" checked /><label for="myQuestions">My Questions</label>
+	<input type="radio" id="favorites"		name="questionFilter" /><label for="favorites">Favorites</label>
+	<input type="radio" id="allQuestions"	name="questionFilter" /><label for="allQuestions">All Questions</label>
+</span>
+<input type="text" id="searchQuestions" placeholder="search" style="width:200px;float:right;" />
