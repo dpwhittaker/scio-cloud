@@ -1,0 +1,8 @@
+<div class="teacherWho">
+	<div class="teacherName"><%= user.first %> <%= user.last %></div>
+	<% for (i = 0; i < user.schools.length; i++) { %>
+		<div class="teacherSchool"><%= user.schools[i].name -%></div>
+	<% } %>
+</div>
+<div class="logoutContainer"><a href="logout" class="smlbutton">Log Out</a></div>
+

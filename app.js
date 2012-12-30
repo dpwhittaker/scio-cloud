@@ -7,7 +7,9 @@ var express = require('express')
   , app = express()
   , passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy
-  , register = require('./node/register.js')(app);
+  , register = require('./node/register.js').init(app)
+  , DB = require('./node/DB.js').init(app)
+  , teacher = require('./node/teacher.js').init(app);
 
 app.configure('development', function() {
 	//af tunnel scio-mongodb
@@ -72,13 +74,11 @@ function setupApp(callback) {
 
 	passport.use(new LocalStrategy(authenticate));
 	passport.serializeUser(function(user, done) {
-		done(null, user._id);
+		done(null, user);
 	});
 
 	passport.deserializeUser(function(id, done) {
-		app.get('Users').findOne({_id: id}, function(err, user) {
-			done(err, user);
-		});
+		done(null, id);
 	});
 
 	app.use('/js', express.static(__dirname + '/js'));
@@ -89,16 +89,14 @@ function setupApp(callback) {
 	var auth = passport.authenticate('local', {failureRedirect: '/login', failureFlash: true});
 	app.post('/login', auth, function(req,res,next) {res.redirect('/' + req.user.userType);});
 	app.get('/login', function(req,res,next){ res.render('login', {error: req.flash('error')} ); });
-
+	app.get('/logout', function(req,res,next){ req.logout(); res.redirect('/'); });
+	
 	app.get('/register', register.get);
 	app.post('/register', register.post);
+	app.get('/schools', DB.schools);
 	
-	var Schools = app.get('Schools');
-	app.get('/schools', function(req,res,next){
-		Schools.find({'name': {$regex: req.params.term, $options: 'i'} }).toArray(function(array){
-			res.send(array);
-		});
-	});
+	app.all('/teacher*', teacher.authorize);
+	app.get('/teacher', teacher.get);
 	
 	callback();
 }
@@ -109,12 +107,23 @@ function listen(callback) {
 }
 
 function authenticate(username, password, done) {
-	app.get('Users').findOne({ _id: username }, function(err, user) {
+	console.log(username);
+	console.log(password);
+	async.parallel([
+		function (callback) { app.get('Users').findOne({ _id: username }, callback); },
+		function (callback) { app.get('Schools').find({ teachers: username }, {name:1, state:1, system:1}).toArray(callback); }
+	],
+	function(err, results) {
     if (err) { return done(err); }
+    var user = results[0], schools = results[1];
     if (!user || user.password != password) {
       return done(null, false, { message: 'Incorrect username or password.' });
     }
-    return done(null, user);
+    delete user.password;
+    user.schools = schools;
+	  console.log("authenticated:");
+	  console.log(user);
+	  return done(null, user);
   });
 }
 

@@ -37,7 +37,7 @@ footer {
 }
 
 h1 {
-	font-size: 66px;
+	font-size: 35px;
 	color: #0078AE;
 }
 
@@ -90,6 +90,10 @@ h1 {
 	border-top-color: #1b435e;
 	background: #1b435e;
 }
+.bigbuttongrid .bigbutton {
+	width: 218px;
+	margin: 10px;
+}
 .center {
 	text-align: center;
 	margin: 0 auto;
@@ -111,3 +115,19 @@ h1 {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+.teacherWho {
+	float: left;
+	margin-right: 5px;
+}
+.logoutContainer {
+	float: right;
+}
+.teacherName {
+	font-weight: bold;
+	font-size: 14px;
+}
+.teacherSchool {
+	font-size: 10px;
+	font-style: italic;
+}
+
