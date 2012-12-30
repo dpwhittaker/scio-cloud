@@ -1,0 +1,123 @@
+{
+  "name": "scio",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": {
+      "version": "3.0.4",
+      "dependencies": {
+        "connect": {
+          "version": "2.7.1",
+          "dependencies": {
+            "qs": {
+              "version": "0.5.1"
+            },
+            "formidable": {
+              "version": "1.0.11"
+            },
+            "crc": {
+              "version": "0.2.0"
+            },
+            "bytes": {
+              "version": "0.1.0"
+            },
+            "pause": {
+              "version": "0.0.1"
+            }
+          }
+        },
+        "commander": {
+          "version": "0.6.1"
+        },
+        "range-parser": {
+          "version": "0.0.4"
+        },
+        "mkdirp": {
+          "version": "0.3.3"
+        },
+        "cookie": {
+          "version": "0.0.5"
+        },
+        "buffer-crc32": {
+          "version": "0.1.1"
+        },
+        "fresh": {
+          "version": "0.1.0"
+        },
+        "methods": {
+          "version": "0.0.1"
+        },
+        "send": {
+          "version": "0.1.0",
+          "dependencies": {
+            "mime": {
+              "version": "1.2.6"
+            }
+          }
+        },
+        "cookie-signature": {
+          "version": "0.0.1"
+        },
+        "debug": {
+          "version": "0.7.0"
+        }
+      }
+    },
+    "mongodb": {
+      "version": "1.0.2",
+      "dependencies": {
+        "bson": {
+          "version": "0.0.6"
+        }
+      }
+    },
+    "async": {
+      "version": "0.1.22"
+    },
+    "ejs-locals": {
+      "version": "1.0.2",
+      "dependencies": {
+        "ejs": {
+          "version": "0.8.3"
+        }
+      }
+    },
+    "passport": {
+      "version": "0.1.15",
+      "dependencies": {
+        "pkginfo": {
+          "version": "0.2.3"
+        }
+      }
+    },
+    "passport-local": {
+      "version": "0.1.6",
+      "dependencies": {
+        "pkginfo": {
+          "version": "0.2.3"
+        }
+      }
+    },
+    "connect-mongodb": {
+      "version": "1.1.5",
+      "dependencies": {
+        "connect": {
+          "version": "1.9.2",
+          "dependencies": {
+            "qs": {
+              "version": "0.5.3"
+            },
+            "mime": {
+              "version": "1.2.7"
+            },
+            "formidable": {
+              "version": "1.0.11"
+            }
+          }
+        }
+      }
+    },
+    "connect-flash": {
+      "version": "0.1.0"
+    }
+  }
+}
