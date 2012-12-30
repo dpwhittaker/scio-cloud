@@ -21,7 +21,7 @@ header {
  
 #content {
 	width: 100%;
-	max-width:800px;
+	max-width:786px;
 	margin:0 auto;
 	background:#fff;
 	padding:5px;
@@ -61,21 +61,21 @@ h1 {
 	text-align: center;
 }
 .bigbutton {
-	padding: 40px 80px;
+	padding: 40px 40px;
 	-webkit-border-radius: 40px;
 	-moz-border-radius: 40px;
 	border-radius: 40px;
 	font-size: 40px;
 }
 .medbutton {
-	padding: 20px 40px;
+	padding: 20px 20px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 	font-size: 20px;
 }
 .smlbutton {
-	padding: 5px 20px;
+	padding: 5px 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
@@ -90,9 +90,17 @@ h1 {
 	border-top-color: #1b435e;
 	background: #1b435e;
 }
+.bigbuttongrid {
+/*	text-align: justify;*/
+}
 .bigbuttongrid .bigbutton {
-	width: 218px;
+	width: 280px;
 	margin: 10px;
+	display: inline-block;
+	float: left;
+}
+.bigbuttongrid .bigbutton:nth-child(even) {
+	float:right;
 }
 .center {
 	text-align: center;
