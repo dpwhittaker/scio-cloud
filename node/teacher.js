@@ -7,7 +7,9 @@ exports.init = function (appVar) {
 	app.get('/teacher', get);
 	app.get('/teacher/questions', questions);
 	app.get('/teacher/questions/new', newQuestion);
-	app.get('/teacher/questions/:id', editQuestion);
+	app.get('/teacher/questions/:id', viewQuestion);
+	app.get('/teacher/questions/:id/edit', editQuestion);
+	app.get('/teacher/questions/:id/delete', deleteQuestion);
 }
 
 function authorize (req, res, next) {
@@ -22,7 +24,18 @@ function get (req, res, next) {
 };
 
 function questions (req, res, next) {
-	res.render('questions');
+	app.get('Questions').find({author: req.user._id}).toArray(function(err, questions) {
+		if (err) next(err);
+		res.render('questions', {questions: questions});
+	});
+}
+
+function viewQuestion (req, res, next) {
+	app.get('Questions').findOne({_id: new ObjectID(req.params.id)}, function (err, question) {
+		if (err) return next(err);
+		if (!question) return res.send('Question not found');
+		res.render('viewQuestion', {question: question});
+	});
 }
 
 function newQuestion (req, res, next) {
@@ -31,10 +44,11 @@ function newQuestion (req, res, next) {
 		body: '',
 		author: req.user._id,
 		variables: {},
-		answers: {}
+		answers: {},
+		images: []
 	}, {w:1}, function (err, question) {
 		if (err) return next(err);
-		res.redirect('/teacher/questions/' + question[0]._id);
+		res.redirect('/teacher/questions/' + question[0]._id + '/edit');
 	});
 }
 
@@ -42,6 +56,13 @@ function editQuestion (req, res, next) {
 	app.get('Questions').findOne({_id: new ObjectID(req.params.id)}, function (err, question) {
 		if (err) return next(err);
 		if (!question) return res.send('Question not found');
-		res.render('editQuestion', question);
+		res.render('editQuestion', {question: question});
+	});
+}
+
+function deleteQuestion (req, res, next) {
+	app.get('Questions').remove({_id: new ObjectID(req.params.id)}, {w:1}, function(err) {
+		if (err) return next(err);
+		res.redirect('/teacher/questions');
 	});
 }

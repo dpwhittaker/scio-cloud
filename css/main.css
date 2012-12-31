@@ -1,8 +1,7 @@
 html, body {
 	margin:0; padding:0; min-height: 100%;
 }
- 
-body {
+body.topLevel {
 	font-family:Georgia, Times, serifs;
 	background: #fcfff4; /* Old browsers */
 	background: -moz-linear-gradient(top,  #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); /* FF3.6+ */
@@ -13,15 +12,13 @@ body {
 	background: linear-gradient(to bottom,  #fcfff4 0%,#dfe5d7 40%,#b3bead 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 ); /* IE6-9 */
 }
- 
 header {
 	width:800px;
 	margin:0 auto;
 }
- 
 #content {
-	width: 100%;
-	max-width:786px;
+	width:786px;
+	min-height:300px;
 	margin:0 auto;
 	background:#fff;
 	padding:5px;
@@ -30,68 +27,13 @@ header {
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 }
- 
 footer {
 	position:absolute;
 	bottom:0; right:0;
 }
-
 h1 {
 	font-size: 35px;
 	color: #0078AE;
-}
-
-.bigbutton, .medbutton, .smlbutton {
-	border-top: 1px solid #96d1f8;
-	background: #65a9d7;
-	background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-	background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-	background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-	background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-	background: -o-linear-gradient(top, #3e779d, #65a9d7);
-	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-	box-shadow: rgba(0,0,0,1) 0 1px 0;
-	text-shadow: rgba(0,0,0,.4) 0 1px 0;
-	color: white;
-	font-family: Georgia, Serif;
-	text-decoration: none;
-	vertical-align: middle;
-	display: inline-block;
-	text-align: center;
-}
-.bigbutton {
-	padding: 40px 40px;
-	-webkit-border-radius: 40px;
-	-moz-border-radius: 40px;
-	border-radius: 40px;
-	font-size: 40px;
-}
-.medbutton {
-	padding: 20px 20px;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	font-size: 20px;
-}
-.smlbutton {
-	padding: 5px 10px;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	font-size: 12px;
-}
-.bigbutton:hover, .medbutton:hover, .smlbutton:hover {
-	border-top-color: #28597a;
-	background: #28597a;
-	color: #ccc;
-}
-.bigbutton:active, .medbutton:active, .smlbutton:active {
-	border-top-color: #1b435e;
-	background: #1b435e;
-}
-.bigbuttongrid {
-/*	text-align: justify;*/
 }
 .bigbuttongrid .button {
 	width: 360px;
@@ -107,7 +49,6 @@ h1 {
 	text-align: center;
 	margin: 0 auto;
 }
-
 #loginForm .button {
 	font-size: 12px;
 }
@@ -142,4 +83,16 @@ input[type="text"], input[type="password"] {
 	font-size: 10px;
 	font-style: italic;
 }
-
+.list .listitem:nth-child(even) {
+	background-color: #eee;
+}
+.list .listitem .title {
+	float:left;
+}
+.list .listitem .tools {
+	float:right;
+}
+.list .listitem .tools img {
+	height: 40px;
+	margin-bottom:-15px;
+}

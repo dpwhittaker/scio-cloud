@@ -5,10 +5,27 @@
 $(function() {
 });
 </script>
-<a class="button" href="/teacher/questions/new">New Question</a>
-<span class="buttonSet">
-	<input type="radio" id="myQuestions"	name="questionFilter" checked /><label for="myQuestions">My Questions</label>
-	<input type="radio" id="favorites"		name="questionFilter" /><label for="favorites">Favorites</label>
-	<input type="radio" id="allQuestions"	name="questionFilter" /><label for="allQuestions">All Questions</label>
-</span>
-<input type="text" id="searchQuestions" placeholder="search" style="width:200px;float:right;" />
+<div class="toolbar">
+	<a class="button" href="/teacher/questions/new">New Question</a>
+	<span class="buttonSet">
+		<input type="radio" id="myQuestions"	name="questionFilter" checked /><label for="myQuestions">My Questions</label>
+		<input type="radio" id="favorites"		name="questionFilter" /><label for="favorites">Favorites</label>
+		<input type="radio" id="allQuestions"	name="questionFilter" /><label for="allQuestions">All Questions</label>
+	</span>
+	<input type="text" id="searchQuestions" placeholder="search" style="width:200px;float:right;" />
+</div>
+<div class="list">
+<% for (i=0; i < questions.length; i++) { %>
+	<div class="listitem">
+		<div class="title"><%= questions[i].title %></div>
+		<div class="body"><%= questions[i].body.substring(0, 100) %></div>
+		<div class="tools">
+			<img src="/teacher/questions/<%= questions[i]._id %>/img/0"/>
+			<a href="/teacher/questions/<%= questions[i]._id %>" class="button">View</a>
+			<a href="/teacher/questions/<%= questions[i]._id %>/edit" class="button">Edit</a>
+			<a href="/teacher/questions/<%= questions[i]._id %>/delete" class="button">Delete</a>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+<% } %>
+</div>
