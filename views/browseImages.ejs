@@ -1,0 +1,100 @@
+<script type="text/javascript" src="/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/js/tiny_mce/tiny_mce_popup.js"></script>
+<style>
+.imageDiv {
+	float: left;
+	position: relative;
+	height: 100px;
+	width: 100px;
+	border: 2px solid #eee;
+	margin: 5px;
+	cursor: pointer;
+}
+.imageDiv td {
+	text-align: center;
+}
+.image {
+	max-height:100px;
+	max-width:100px;
+}
+.imageDiv:hover {
+	border-color: blue;
+}
+.delete {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+</style>
+<script type="text/javascript">
+var question = "<%- question -%>";
+
+function Select(event) {
+	image = this.id;
+	var URL = "/teacher/questions/" + question + "/img/" + image;
+	var win = tinyMCEPopup.getWindowArg("window");
+
+	// insert information now
+	win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = URL;
+
+	// are we an image browser
+	if (typeof(win.ImageDialog) != "undefined") {
+	// we are, so update image dimensions...
+	if (win.ImageDialog.getImageData)
+		win.ImageDialog.getImageData();
+
+	// ... and preview if necessary
+	if (win.ImageDialog.showPreviewImage)
+		win.ImageDialog.showPreviewImage(URL);
+	}
+
+	// close popup window
+	tinyMCEPopup.close();
+}
+
+function Delete(event) {
+	image = $(this).parents('.imageDiv')[0].id;
+	event.stopPropagation();
+	$.ajax("/teacher/questions/" + question + "/img/" + image + "/delete", {
+		success: function() {$('#' + image).remove(); }
+	});
+}
+
+function Upload() {
+	var xhr = new XMLHttpRequest(), fd = new FormData();
+	var imgUrl = '/teacher/questions/' + question + '/img/';
+	fd.append( 'image', this.files[0] );
+	xhr.open( 'POST', imgUrl + 'new', true );
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState==4 && xhr.status==200) {
+			MakeImage(xhr.responseText);
+			$('#uploadSpan')[0].innerHTML = '<input id="upload" type="file"/>';
+			$('#upload').change(Upload);
+		}
+	};
+	xhr.send( fd );
+}
+
+function MakeImage(hash) {
+	var s = '<div id="HASH" class="imageDiv">' +
+					'<table width="100%" height="100%" valign="center" halign="center" cellpadding="0" cellspacing="0"><tr><td>' +
+					'<img class="image" src="/teacher/questions/QUESTION/img/HASH" />' +
+					'<img class="delete" src="/img/delete.png" />' +
+					'</td></tr></table></div>';
+	s = s.replace(/HASH/g, hash);
+	s = s.replace(/QUESTION/g, question);
+	document.body.innerHTML += s;
+	$('.imageDiv').click(Select);
+	$('.delete').click(Delete);
+}
+
+$(function() {
+	$('#upload').change(Upload);
+});
+</script>
+Upload an image: <span id="uploadSpan"><input id="upload" type="file"/></span><br/><br/>
+<script type="text/javascript">
+<% for (i = 0; i < images.length; i++) { %>
+MakeImage('<%- images[i] -%>');
+<% } %>
+</script>

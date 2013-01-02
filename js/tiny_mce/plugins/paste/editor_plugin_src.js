@@ -150,6 +150,24 @@
 			function grabContent(e) {
 				var n, or, rng, oldRng, sel = ed.selection, dom = ed.dom, body = ed.getBody(), posY, textContent;
 
+				// jh@xlhost.de: grab image content from clipboard via new chromium API
+				if (tinymce.isWebKit) {
+					var items = e.clipboardData.items;
+					if ((items[0]['kind'] == 'file') && (items[0]['type'].search('^image/') != -1)) {
+						var xhr = new XMLHttpRequest(), fd = new FormData();
+						var imgUrl = location.href.replace('/edit', '/img/');
+						fd.append( 'image', items[0].getAsFile() );
+						xhr.open( 'POST', imgUrl + 'new', true );
+						xhr.onreadystatechange = function() {
+							if (xhr.readyState==4 && xhr.status==200) {
+								ed.execCommand('mceInsertContent', false, ed.dom.createHTML('img', {src: imgUrl + xhr.responseText}));
+							}
+						};
+						xhr.send( fd );
+						return;
+					}
+				}
+
 				// Check if browser supports direct plaintext access
 				if (e.clipboardData || dom.doc.dataTransfer) {
 					textContent = (e.clipboardData || dom.doc.dataTransfer).getData('Text');

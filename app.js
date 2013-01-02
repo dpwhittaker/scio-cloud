@@ -82,6 +82,7 @@ function setupApp(callback) {
 
 	app.use('/js', express.static(__dirname + '/js'));
 	app.use('/css', express.static(__dirname + '/css'));
+	app.use('/img', express.static(__dirname + '/img'));
 
 	app.get('/',function(req,res,next){ if (req.user) res.redirect('/' + req.user.userType); else res.render('index'); });
 	
