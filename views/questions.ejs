@@ -20,7 +20,7 @@ $(function() {
 		<div class="title"><%= questions[i].title %></div>
 		<div class="body"><%= questions[i].body.substring(0, 100) %></div>
 		<div class="tools">
-			<img src="/teacher/questions/<%= questions[i]._id %>/img/0"/>
+			<img src="/teacher/questions/<%= questions[i]._id %>/img/<%= questions[i].imageHashes[0] %>"/>
 			<a href="/teacher/questions/<%= questions[i]._id %>" class="button">View</a>
 			<a href="/teacher/questions/<%= questions[i]._id %>/edit" class="button">Edit</a>
 			<a href="/teacher/questions/<%= questions[i]._id %>/delete" class="button">Delete</a>

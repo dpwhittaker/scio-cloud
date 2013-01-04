@@ -1,0 +1,216 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=7">
+	<title>Math Symbols</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script><link rel="stylesheet" href="http://localhost:3000/js/tiny_mce/themes/advanced/skins/default/dialog.css">
+	<script type="text/x-mathjax-config">MathJax.Hub.Config({
+		showProcessingMessages: false,
+		"HTML-CSS": {
+		  EqnChunk: 10,
+			EqnChunkFactor: 2,
+			EqnChunkDelay: 0
+		}
+	});</script>
+	<script type="text/javascript" src="/js/mathjax/MathJax.js?config=AM_HTML"></script>
+	<style type="text/css">
+	td.character {
+	    font-family: Times,serif;
+	    font-size: 14px;
+	    font-weight: bold;
+	    text-align: center;
+	    background: #FFF;
+	    padding: 4px;
+	}
+	
+	td.character-hilite {
+	    background: Highlight;
+	    color: HighlightText;
+	}
+	</style>
+<script type="text/javascript">
+tinyMCEPopup.requireLangPack();
+
+var AsciimathDialog = {
+	init : function() {
+	},
+
+	set : function(val) {
+		tinyMCEPopup.restoreSelection();
+		// Insert the contents from the input into the document
+		tinyMCEPopup.editor.execCommand('mceAsciimath', val);
+		tinyMCEPopup.close();
+	}
+};
+
+tinyMCEPopup.onInit.add(AsciimathDialog.init, AsciimathDialog);
+
+var oldView = null;
+function View( td, character )               // preview character
+{
+    if (oldView)
+        oldView.className = oldView.className.replace(/\s+character-hilite/, '');
+
+    if (td) {
+        (oldView = td).className += " character-hilite";
+        td.setAttribute("title",character);  // added by Peter Jipsen
+    }
+}
+
+</script>
+<base target="_self"/>
+</head>
+<body>
+
+<table border="0" cellspacing="1" cellpadding="0" width="100%" style="cursor: pointer; background: #ADAD9C; border: 1px inset;">
+<tr>
+<td class="character" onMouseOver="View(this,'``')" onClick="javascript:AsciimathDialog.set('')">New</td>
+<td class="character" onMouseOver="View(this,'(x+1)/(x-1)')" onClick="javascript:AsciimathDialog.set('(x+1)/(x-1)')"><script type="math/asciimath">(x+1)/(x-1)</script></td>
+<td class="character" onMouseOver="View(this,'x^(m+n)')" onClick="javascript:AsciimathDialog.set('x^(m+n)')"><script type="math/asciimath">x^(m+n)</script></td>
+<td class="character" onMouseOver="View(this,'x_(mn)')" onClick="javascript:AsciimathDialog.set('x_(mn)')"><script type="math/asciimath">x_(mn)</script></td>
+<td class="character" onMouseOver="View(this,'sqrt(x)')" onClick="javascript:AsciimathDialog.set('sqrt(x)')"><script type="math/asciimath">sqrt(x)</script></td>
+<td class="character" onMouseOver="View(this,'root(n)(x)')" onClick="javascript:AsciimathDialog.set('root(n)(x)')"><script type="math/asciimath">root(n)(x)</script></td>
+<td class="character" onMouseOver="View(this,'dy/dx')" onClick="javascript:AsciimathDialog.set('dy/dx')"><script type="math/asciimath">dy/dx</script></td>
+<td class="character" onMouseOver="View(this,'lim_(x->oo)')" onClick="javascript:AsciimathDialog.set('lim_(x->oo)')"><script type="math/asciimath">lim_(x->oo)</script></td>
+<td class="character" onMouseOver="View(this,'sum_(n=1)^oo')" onClick="javascript:AsciimathDialog.set('sum_(n=1)^oo')"><script type="math/asciimath">sum_(n=1)^oo</script></td>
+<td colspan="2" class="character" onMouseOver="View(this,'int_a^bf(x)dx')" onClick="javascript:AsciimathDialog.set('int_a^bf(x)dx')"><script type="math/asciimath">int_a^bf(x)dx</script></td>
+<td class="character" onMouseOver="View(this,'int')" onClick="javascript:AsciimathDialog.set('int')"><script type="math/asciimath">int</script></td>
+<td class="character" onMouseOver="View(this,'oint')" onClick="javascript:AsciimathDialog.set('oint')"><script type="math/asciimath">oint</script></td>
+<td colspan="2" class="character" onMouseOver="View(this,'[[a,b],[c,d]]')" onClick="javascript:AsciimathDialog.set('[[a,b],[c,d]]')"><script type="math/asciimath">[[a,b],[c,d]]</script></td>
+<td class="character" onMouseOver="View(this,'((n),(k))')" onClick="javascript:AsciimathDialog.set('((n),(k))')"><script type="math/asciimath">((n),(k))</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'*')" onClick="javascript:AsciimathDialog.set('*')"><script type="math/asciimath">*</script></td>
+<td class="character" onMouseOver="View(this,'**')" onClick="javascript:AsciimathDialog.set('**')"><script type="math/asciimath">**</script></td>
+<td class="character" onMouseOver="View(this,'//')" onClick="javascript:AsciimathDialog.set('//')"><script type="math/asciimath">//</script></td>
+<td class="character" onMouseOver="View(this,'\\\\')" onClick="javascript:AsciimathDialog.set('\\\\')"><script type="math/asciimath">\\ </script></td>
+<td class="character" onMouseOver="View(this,'xx')" onClick="javascript:AsciimathDialog.set('xx')"><script type="math/asciimath">xx</script></td>
+<td class="character" onMouseOver="View(this,'-:')" onClick="javascript:AsciimathDialog.set('-:')"><script type="math/asciimath">-:</script></td>
+<td class="character" onMouseOver="View(this,'@')" onClick="javascript:AsciimathDialog.set('@')"><script type="math/asciimath">@</script></td>
+<td class="character" onMouseOver="View(this,'o+')" onClick="javascript:AsciimathDialog.set('o+')"><script type="math/asciimath">o+</script></td>
+<td class="character" onMouseOver="View(this,'ox')" onClick="javascript:AsciimathDialog.set('ox')"><script type="math/asciimath">ox</script></td>
+<td class="character" onMouseOver="View(this,'o.')" onClick="javascript:AsciimathDialog.set('o.')"><script type="math/asciimath">o.</script></td>
+<td class="character" onMouseOver="View(this,'sum')" onClick="javascript:AsciimathDialog.set('sum')"><script type="math/asciimath">sum</script></td>
+<td class="character" onMouseOver="View(this,'prod')" onClick="javascript:AsciimathDialog.set('prod')"><script type="math/asciimath">prod</script></td>
+<td class="character" onMouseOver="View(this,'^^')" onClick="javascript:AsciimathDialog.set('^^')"><script type="math/asciimath">^^</script></td>
+<td class="character" onMouseOver="View(this,'^^^')" onClick="javascript:AsciimathDialog.set('^^^')"><script type="math/asciimath">^^^</script></td>
+<td class="character" onMouseOver="View(this,'vv')" onClick="javascript:AsciimathDialog.set('vv')"><script type="math/asciimath">vv</script></td>
+<td class="character" onMouseOver="View(this,'vvv')" onClick="javascript:AsciimathDialog.set('vvv')"><script type="math/asciimath">vvv</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'!=')" onClick="javascript:AsciimathDialog.set('!=')"><script type="math/asciimath">!=</script></td>
+<td class="character" onMouseOver="View(this,'&lt;=')" onClick="javascript:AsciimathDialog.set('<=')"><script type="math/asciimath"><=</script></td>
+<td class="character" onMouseOver="View(this,'&gt;=')" onClick="javascript:AsciimathDialog.set('>=')"><script type="math/asciimath">>=</script></td>
+<td class="character" onMouseOver="View(this,'-&lt;')" onClick="javascript:AsciimathDialog.set('-<')"><script type="math/asciimath">-<</script></td>
+<td class="character" onMouseOver="View(this,'&gt;-')" onClick="javascript:AsciimathDialog.set('>-')"><script type="math/asciimath">>-</script></td>
+<td class="character" onMouseOver="View(this,'in')" onClick="javascript:AsciimathDialog.set('in')"><script type="math/asciimath">in</script></td>
+<td class="character" onMouseOver="View(this,'!in')" onClick="javascript:AsciimathDialog.set('!in')"><script type="math/asciimath">!in</script></td>
+<td class="character" onMouseOver="View(this,'sub')" onClick="javascript:AsciimathDialog.set('sub')"><script type="math/asciimath">sub</script></td>
+<td class="character" onMouseOver="View(this,'sup')" onClick="javascript:AsciimathDialog.set('sup')"><script type="math/asciimath">sup</script></td>
+<td class="character" onMouseOver="View(this,'sube')" onClick="javascript:AsciimathDialog.set('sube')"><script type="math/asciimath">sube</script></td>
+<td class="character" onMouseOver="View(this,'supe')" onClick="javascript:AsciimathDialog.set('supe')"><script type="math/asciimath">supe</script></td>
+<td class="character" onMouseOver="View(this,'O/')" onClick="javascript:AsciimathDialog.set('O/')"><script type="math/asciimath">O/</script></td>
+<td class="character" onMouseOver="View(this,'nn')" onClick="javascript:AsciimathDialog.set('nn')"><script type="math/asciimath">nn</script></td>
+<td class="character" onMouseOver="View(this,'nnn')" onClick="javascript:AsciimathDialog.set('nnn')"><script type="math/asciimath">nnn</script></td>
+<td class="character" onMouseOver="View(this,'uu')" onClick="javascript:AsciimathDialog.set('uu')"><script type="math/asciimath">uu</script></td>
+<td class="character" onMouseOver="View(this,'uuu')" onClick="javascript:AsciimathDialog.set('uuu')"><script type="math/asciimath">uuu</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'and')" onClick="javascript:AsciimathDialog.set('and')"><script type="math/asciimath">and</script></td>
+<td class="character" onMouseOver="View(this,'or')" onClick="javascript:AsciimathDialog.set('or')"><script type="math/asciimath">or</script></td>
+<td class="character" onMouseOver="View(this,'not')" onClick="javascript:AsciimathDialog.set('not')"><script type="math/asciimath">not</script></td>
+<td class="character" onMouseOver="View(this,'=&gt')" onClick="javascript:AsciimathDialog.set('=>')"><script type="math/asciimath">=></script></td>
+<td class="character" onMouseOver="View(this,'if')" onClick="javascript:AsciimathDialog.set('if')"><script type="math/asciimath">if</script></td>
+<td class="character" onMouseOver="View(this,'&lt;=&gt;')" onClick="javascript:AsciimathDialog.set('<=>')"><script type="math/asciimath"><=></script></td>
+<td class="character" onMouseOver="View(this,'AA')" onClick="javascript:AsciimathDialog.set('AA')"><script type="math/asciimath">AA</script></td>
+<td class="character" onMouseOver="View(this,'EE')" onClick="javascript:AsciimathDialog.set('EE')"><script type="math/asciimath">EE</script></td>
+<td class="character" onMouseOver="View(this,'_|_')" onClick="javascript:AsciimathDialog.set('_|_')"><script type="math/asciimath">_|_</script></td>
+<td class="character" onMouseOver="View(this,'TT')" onClick="javascript:AsciimathDialog.set('TT')"><script type="math/asciimath">TT</script></td>
+<td class="character" onMouseOver="View(this,'|--')" onClick="javascript:AsciimathDialog.set('|--')"><script type="math/asciimath">|--</script></td>
+<td class="character" onMouseOver="View(this,'cong')" onClick="javascript:AsciimathDialog.set('cong')"><script type="math/asciimath">cong</script></td>
+<td class="character" onMouseOver="View(this,'-=')" onClick="javascript:AsciimathDialog.set('-=')"><script type="math/asciimath">-=</script></td>
+<td class="character" onMouseOver="View(this,'~=')" onClick="javascript:AsciimathDialog.set('~=')"><script type="math/asciimath">~=</script></td>
+<td class="character" onMouseOver="View(this,'~~')" onClick="javascript:AsciimathDialog.set('~~')"><script type="math/asciimath">~~</script></td>
+<td class="character" onMouseOver="View(this,'prop')" onClick="javascript:AsciimathDialog.set('prop')"><script type="math/asciimath">prop</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'&quot;text&quot;')" onClick="javascript:AsciimathDialog.set('&quot;text&quot;')"><script type="math/asciimath">"text"</script></td>
+<td class="character" onMouseOver="View(this,'quad')" onClick="javascript:AsciimathDialog.set('quad')"><script type="math/asciimath">"quad"</script></td>
+<td class="character" onMouseOver="View(this,'del')" onClick="javascript:AsciimathDialog.set('del')"><script type="math/asciimath">del</script></td>
+<td class="character" onMouseOver="View(this,'grad')" onClick="javascript:AsciimathDialog.set('grad')"><script type="math/asciimath">grad</script></td>
+<td class="character" onMouseOver="View(this,'+-')" onClick="javascript:AsciimathDialog.set('+-')"><script type="math/asciimath">+-</script></td>
+<td class="character" onMouseOver="View(this,'oo')" onClick="javascript:AsciimathDialog.set('oo')"><script type="math/asciimath">oo</script></td>
+<td class="character" onMouseOver="View(this,'aleph')" onClick="javascript:AsciimathDialog.set('aleph')"><script type="math/asciimath">aleph</script></td>
+<td class="character" onMouseOver="View(this,'diamond')" onClick="javascript:AsciimathDialog.set('diamond')"><script type="math/asciimath">diamond</script></td>
+<td class="character" onMouseOver="View(this,'square')" onClick="javascript:AsciimathDialog.set('square')"><script type="math/asciimath">square</script></td>
+<td class="character" onMouseOver="View(this,'|__')" onClick="javascript:AsciimathDialog.set('|__')"><script type="math/asciimath">|__</script></td>
+<td class="character" onMouseOver="View(this,'__|')" onClick="javascript:AsciimathDialog.set('__|')"><script type="math/asciimath">__|</script></td>
+<td class="character" onMouseOver="View(this,'|~')" onClick="javascript:AsciimathDialog.set('|~')"><script type="math/asciimath">|~</script></td>
+<td class="character" onMouseOver="View(this,'~|')" onClick="javascript:AsciimathDialog.set('~|')"><script type="math/asciimath">~|</script></td>
+<td class="character" onMouseOver="View(this,'&lt;&lt;x&gt;&gt')" onClick="javascript:AsciimathDialog.set('<< x>>')"><script type="math/asciimath"><< x>></script></td>
+<td class="character" onMouseOver="View(this,'/_')" onClick="javascript:AsciimathDialog.set('/_')"><script type="math/asciimath">/_</script></td>
+<td class="character" onMouseOver="View(this,':.')" onClick="javascript:AsciimathDialog.set(':.')"><script type="math/asciimath">:.</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'uarr')" onClick="javascript:AsciimathDialog.set('uarr')"><script type="math/asciimath">uarr</script></td>
+<td class="character" onMouseOver="View(this,'darr')" onClick="javascript:AsciimathDialog.set('darr')"><script type="math/asciimath">darr</script></td>
+<td class="character" onMouseOver="View(this,'larr')" onClick="javascript:AsciimathDialog.set('larr')"><script type="math/asciimath">larr</script></td>
+<td class="character" onMouseOver="View(this,'->')" onClick="javascript:AsciimathDialog.set('->')"><script type="math/asciimath">-></script></td>
+<td class="character" onMouseOver="View(this,'|->')" onClick="javascript:AsciimathDialog.set('|->')"><script type="math/asciimath">|-></script></td>
+<td class="character" onMouseOver="View(this,'harr')" onClick="javascript:AsciimathDialog.set('harr')"><script type="math/asciimath">harr</script></td>
+<td class="character" onMouseOver="View(this,'lArr')" onClick="javascript:AsciimathDialog.set('lArr')"><script type="math/asciimath">lArr</script></td>
+<td class="character" onMouseOver="View(this,'rArr')" onClick="javascript:AsciimathDialog.set('rArr')"><script type="math/asciimath">rArr</script></td>
+<td class="character" onMouseOver="View(this,'hArr')" onClick="javascript:AsciimathDialog.set('hArr')"><script type="math/asciimath">hArr</script></td>
+<td class="character" onMouseOver="View(this,'hata')" onClick="javascript:AsciimathDialog.set('hata')"><script type="math/asciimath">hata</script></td>
+<td class="character" onMouseOver="View(this,'ula')" onClick="javascript:AsciimathDialog.set('ula')"><script type="math/asciimath">ula</script></td>
+<td class="character" onMouseOver="View(this,'bara')" onClick="javascript:AsciimathDialog.set('bara')"><script type="math/asciimath">bara</script></td>
+<td class="character" onMouseOver="View(this,'dota')" onClick="javascript:AsciimathDialog.set('dota')"><script type="math/asciimath">dota</script></td>
+<td class="character" onMouseOver="View(this,'ddota')" onClick="javascript:AsciimathDialog.set('ddota')"><script type="math/asciimath">ddota</script></td>
+<td colspan="2" rowspan="2" class="character" onMouseOver="View(this,'{(1 if x>=0),(0 if x<0):}')" onClick="javascript:AsciimathDialog.set('{(1 if x>=0),(0 if x<0):}')"><script type="math/asciimath">{(1 if x>=0),(0 if x<0):}</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'NN')" onClick="javascript:AsciimathDialog.set('NN')"><script type="math/asciimath">NN</script></td>
+<td class="character" onMouseOver="View(this,'ZZ')" onClick="javascript:AsciimathDialog.set('ZZ')"><script type="math/asciimath">ZZ</script></td>
+<td class="character" onMouseOver="View(this,'QQ')" onClick="javascript:AsciimathDialog.set('QQ')"><script type="math/asciimath">QQ</script></td>
+<td class="character" onMouseOver="View(this,'RR')" onClick="javascript:AsciimathDialog.set('RR')"><script type="math/asciimath">RR</script></td>
+<td class="character" onMouseOver="View(this,'CC')" onClick="javascript:AsciimathDialog.set('CC')"><script type="math/asciimath">CC</script></td>
+<td class="character" onMouseOver="View(this,'bbA')" onClick="javascript:AsciimathDialog.set('bbA')"><script type="math/asciimath">bbA</script></td>
+<td class="character" onMouseOver="View(this,'bbbA')" onClick="javascript:AsciimathDialog.set('bbbA')"><script type="math/asciimath">bbbA</script></td>
+<td class="character" onMouseOver="View(this,'ccA')" onClick="javascript:AsciimathDialog.set('ccA')"><script type="math/asciimath">ccA</script></td>
+<td class="character" onMouseOver="View(this,'frA')" onClick="javascript:AsciimathDialog.set('frA')"><script type="math/asciimath">frA</script></td>
+<td class="character" onMouseOver="View(this,'sfA')" onClick="javascript:AsciimathDialog.set('sfA')"><script type="math/asciimath">sfA</script></td>
+<td class="character" onMouseOver="View(this,'ttA')" onClick="javascript:AsciimathDialog.set('ttA')"><script type="math/asciimath">ttA</script></td>
+<td class="character" onMouseOver="View(this,'veca')" onClick="javascript:AsciimathDialog.set('veca')"><script type="math/asciimath">veca</script></td>
+<td class="character" onMouseOver="View(this,'stackrel(+)(->)')" onClick="javascript:AsciimathDialog.set('stackrel(+)(->)')"><script type="math/asciimath">stackrel(+)(->)</script></td>
+<td class="character" onMouseOver="View(this,'upsilon')" onClick="javascript:AsciimathDialog.set('upsilon')"><script type="math/asciimath">upsilon</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'alpha')" onClick="javascript:AsciimathDialog.set('alpha')"><script type="math/asciimath">alpha</script></td>
+<td class="character" onMouseOver="View(this,'beta')" onClick="javascript:AsciimathDialog.set('beta')"><script type="math/asciimath">beta</script></td>
+<td class="character" onMouseOver="View(this,'gamma')" onClick="javascript:AsciimathDialog.set('gamma')"><script type="math/asciimath">gamma</script></td>
+<td class="character" onMouseOver="View(this,'Gamma')" onClick="javascript:AsciimathDialog.set('Gamma')"><script type="math/asciimath">Gamma</script></td>
+<td class="character" onMouseOver="View(this,'delta')" onClick="javascript:AsciimathDialog.set('delta')"><script type="math/asciimath">delta</script></td>
+<td class="character" onMouseOver="View(this,'Delta')" onClick="javascript:AsciimathDialog.set('Delta')"><script type="math/asciimath">Delta</script></td>
+<td class="character" onMouseOver="View(this,'epsi')" onClick="javascript:AsciimathDialog.set('epsi')"><script type="math/asciimath">epsilon</script></td>
+<td class="character" onMouseOver="View(this,'zeta')" onClick="javascript:AsciimathDialog.set('zeta')"><script type="math/asciimath">zeta</script></td>
+<td class="character" onMouseOver="View(this,'eta')" onClick="javascript:AsciimathDialog.set('eta')"><script type="math/asciimath">eta</script></td>
+<td class="character" onMouseOver="View(this,'theta')" onClick="javascript:AsciimathDialog.set('theta')"><script type="math/asciimath">theta</script></td>
+<td class="character" onMouseOver="View(this,'Theta')" onClick="javascript:AsciimathDialog.set('Theta')"><script type="math/asciimath">Theta</script></td>
+<td class="character" onMouseOver="View(this,'iota')" onClick="javascript:AsciimathDialog.set('iota')"><script type="math/asciimath">iota</script></td>
+<td class="character" onMouseOver="View(this,'kappa')" onClick="javascript:AsciimathDialog.set('kappa')"><script type="math/asciimath">kappa</script></td>
+<td class="character" onMouseOver="View(this,'lambda')" onClick="javascript:AsciimathDialog.set('lambda')"><script type="math/asciimath">lambda</script></td>
+<td class="character" onMouseOver="View(this,'Lambda')" onClick="javascript:AsciimathDialog.set('Lambda')"><script type="math/asciimath">Lambda</script></td>
+<td class="character" onMouseOver="View(this,'mu')" onClick="javascript:AsciimathDialog.set('mu')"><script type="math/asciimath">mu</script></td>
+</tr><tr>
+<td class="character" onMouseOver="View(this,'nu')" onClick="javascript:AsciimathDialog.set('nu')"><script type="math/asciimath">nu</script></td>
+<td class="character" onMouseOver="View(this,'pi')" onClick="javascript:AsciimathDialog.set('pi')"><script type="math/asciimath">pi</script></td>
+<td class="character" onMouseOver="View(this,'Pi')" onClick="javascript:AsciimathDialog.set('Pi')"><script type="math/asciimath">Pi</script></td>
+<td class="character" onMouseOver="View(this,'rho')" onClick="javascript:AsciimathDialog.set('rho')"><script type="math/asciimath">rho</script></td>
+<td class="character" onMouseOver="View(this,'sigma')" onClick="javascript:AsciimathDialog.set('sigma')"><script type="math/asciimath">sigma</script></td>
+<td class="character" onMouseOver="View(this,'Sigma')" onClick="javascript:AsciimathDialog.set('Sigma')"><script type="math/asciimath">Sigma</script></td>
+<td class="character" onMouseOver="View(this,'tau')" onClick="javascript:AsciimathDialog.set('tau')"><script type="math/asciimath">tau</script></td>
+<td class="character" onMouseOver="View(this,'xi')" onClick="javascript:AsciimathDialog.set('xi')"><script type="math/asciimath">xi</script></td>
+<td class="character" onMouseOver="View(this,'Xi')" onClick="javascript:AsciimathDialog.set('Xi')"><script type="math/asciimath">Xi</script></td>
+<td class="character" onMouseOver="View(this,'phi')" onClick="javascript:AsciimathDialog.set('phi')"><script type="math/asciimath">phi</script></td>
+<td class="character" onMouseOver="View(this,'Phi')" onClick="javascript:AsciimathDialog.set('Phi')"><script type="math/asciimath">Phi</script></td>
+<td class="character" onMouseOver="View(this,'chi')" onClick="javascript:AsciimathDialog.set('chi')"><script type="math/asciimath">chi</script></td>
+<td class="character" onMouseOver="View(this,'psi')" onClick="javascript:AsciimathDialog.set('psi')"><script type="math/asciimath">psi</script></td>
+<td class="character" onMouseOver="View(this,'Psi')" onClick="javascript:AsciimathDialog.set('Psi')"><script type="math/asciimath">Psi</script></td>
+<td class="character" onMouseOver="View(this,'omega')" onClick="javascript:AsciimathDialog.set('omega')"><script type="math/asciimath">omega</script></td>
+<td class="character" onMouseOver="View(this,'Omega')" onClick="javascript:AsciimathDialog.set('Omega')"><script type="math/asciimath">Omega</script></td>
+</tr>
+</table>
+
+</body>
+</html>
